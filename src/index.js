@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 
 import './index.css';
@@ -25,6 +25,7 @@ const logger = store => {
     }
 }
 
+// alternate way ols js
 const logger2 = function (store) {
     return function (next) {
         return function (action) {
@@ -36,7 +37,9 @@ const logger2 = function (store) {
     }
 }
 
-const store = createStore(rootReducer, applyMiddleware(logger2));
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(rootReducer, composeEnhancer(applyMiddleware(logger)));
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 registerServiceWorker();
