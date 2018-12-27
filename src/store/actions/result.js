@@ -1,8 +1,12 @@
 import * as actionTypes from './actionTypes';
 
 export const storeResult = (result) => {
-    return dispatch => {
+    return (dispatch, getState) => {
         setTimeout(() => {
+            // can get state here and use it but recommended not to.
+            // pass data needed from components i.e. just as result is being passed here
+            // const oldCounter = getState().ctr.counter;
+            // console.log(oldCounter);
             dispatch(postStoreResult(result));
         }, 2000);
     }
