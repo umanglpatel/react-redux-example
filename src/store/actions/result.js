@@ -8,6 +8,9 @@ export const storeResult = (result) => {
     }
 };
 const postStoreResult = result => {
+    // can update or transform data here but recommended to update/transform in reducer.
+    // "reducer updates the state"
+    // const updatedResult = result*2;
     return {
         type: actionTypes.STORE_RESULT,
         result: result
