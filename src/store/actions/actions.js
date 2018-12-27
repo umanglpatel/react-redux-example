@@ -28,6 +28,13 @@ export const subtract = (val) => {
     }
 };
 export const storeResult = (result) => {
+    return dispatch => {
+        setTimeout(() => {
+            dispatch(postStoreResult(result));
+        }, 2000);
+    }
+};
+const postStoreResult = result => {
     return {
         type: STORE_RESULT,
         result: result
